@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Categoria index{% endblock %}
+
+{% block body %}
+<div class="container" class="navbar navbar-dark bg-primary"> 
+<br/>
+
+    <h1>Categoria</h1>
+
+    <table class="table" >
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Active</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorium in categorias %}
+            <tr>
+                <td>{{ categorium.id }}</td>
+                <td>{{ categorium.name }}</td>
+                <td>{{ categorium.active ? 'Yes' : 'No' }}</td>
+                <td>{{ categorium.createdAt ? categorium.createdAt|date('Y-m-d') : '' }}</td>
+                <td>{{ categorium.updatedAt ? categorium.updatedAt|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a class="btn btn-light" href="{{ path('categoria_show', {'id': categorium.id}) }}">Ver</a>
+                    <a class="btn btn-warning" href="{{ path('categoria_edit', {'id': categorium.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('categoria_new') }}" >Crear Nuevo</a>
+{% endblock %}

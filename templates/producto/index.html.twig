@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Producto index{% endblock %}
+
+{% block body %}
+  <div class="container" class="navbar navbar-dark bg-primary"> 
+<br/>
+    <h1>Producto </h1>
+
+    <table  class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Brand</th>
+                <th>Price</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for producto in productos %}
+            <tr>
+                <td>{{ producto.id }}</td>
+                <td>{{ producto.code }}</td>
+                <td>{{ producto.name }}</td>
+                <td>{{ producto.description }}</td>
+                <td>{{ producto.brand }}</td>
+                <td>{{ producto.price }}</td>
+                <td>{{ producto.createdAt ? producto.createdAt|date('Y-m-d') : '' }}</td>
+                <td>{{ producto.updatedAt ? producto.updatedAt|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a class="btn btn-warning" href="{{ path('producto_show', {'id': producto.id}) }}">Ver</a>
+                    <a class="btn btn-primary" href="{{ path('producto_edit', {'id': producto.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('producto_new') }}">Crear Producto Nuevo</a>
+{% endblock %}

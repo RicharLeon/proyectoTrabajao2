@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categoria{% endblock %}
+
+{% block body %}
+<div class="container" class="navbar navbar-dark bg-primary"> 
+<br/>
+    <h1>Ver Categoria</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ categorium.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ categorium.name }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{{ categorium.active ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ categorium.createdAt ? categorium.createdAt|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ categorium.updatedAt ? categorium.updatedAt|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-light" href="{{ path('categoria_index') }}">Volver a Listat</a>
+
+    <a class="btn btn-success" href="{{ path('categoria_edit', {'id': categorium.id}) }}">Editar</a>
+
+    {{ include('categoria/_delete_form.html.twig') }}
+{% endblock %}
